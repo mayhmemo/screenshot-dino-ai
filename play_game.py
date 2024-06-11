@@ -40,12 +40,6 @@ def up():
     keyboard.release(keyboard.KEY_DOWN)
     keyboard.press(keyboard.KEY_UP)
 
-# A function for go right in the game
-def right():
-    keyboard.release(keyboard.KEY_UP)
-    keyboard.release(keyboard.KEY_DOWN)
-    keyboard.press("right")
-
 # A function for stopping the program
 def exit():
     global is_exit
@@ -61,7 +55,6 @@ if __name__ == '__main__':
 
     while True:
         if is_exit:
-            keyboard.release("right")
             keyboard.release(keyboard.KEY_DOWN)
             keyboard.release(keyboard.KEY_UP)
             break
@@ -79,13 +72,10 @@ if __name__ == '__main__':
         result = np.argmax(prediction)  # Convert one-hot prediction to the number
         print("--------------------------")
 
-        if result == 1:     # go right
-            right()
-            print("right")
-        elif result == 0:   # go down
+        if result == 0:   # go down
             down()
             print("down")
-        elif result == 2:   # go up
+        elif result == 1:   # go up
             up()
             print("up")
 
