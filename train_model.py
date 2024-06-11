@@ -57,7 +57,7 @@ def get_CNN_model():
     model.add(Flatten())
     model.add(Dense(128, activation="relu"))
     model.add(Dropout(0.5)) # For regularization
-    model.add(Dense(3, activation="softmax"))
+    model.add(Dense(2, activation="softmax"))
 
     model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
     
@@ -90,7 +90,7 @@ def plot_confusion_matrix(test_X, test_y, model):
     test_y_new = np.argmax(test_y, axis=1)
 
     cm = confusion_matrix(test_y_new, y_pred)
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=["down", "right", "up"])
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=["down", "up"])
 
     disp = disp.plot(include_values=True, cmap='Blues', ax=None, xticks_rotation='horizontal')
     plt.title('Confusion Matrix')
@@ -130,8 +130,6 @@ if __name__ == "__main__":
     print("Shape of test_y:", test_y.shape)
     print("Shape of train_X:", train_X.shape)
     print("Shape of test_x:", test_X.shape)
-    print(test_y)
-    print(test_X)
     
     print('summary: ', model.summary()) # Print model summary
 
@@ -147,4 +145,4 @@ if __name__ == "__main__":
     plot_confusion_matrix(test_X, test_y, model)     # Plot confusion matrix of trained model    
     
     open("model.json","w").write(model.to_json())
-    model.save_weights("weights.h5")
+    model.save_weights(".weights.h5")
