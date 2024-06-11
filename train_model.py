@@ -124,7 +124,7 @@ if __name__ == "__main__":
 
     Y = onehot_labels(Y)                    # Convert labels to onehot labels ==> down: 100, right: 010, up: 001
 
-    train_X, test_X, train_y, test_y = train_test_split(X, Y, test_size=0.1, random_state=10)  # Split the dataset
+    train_X, test_X, train_y, test_y = train_test_split(X, Y, test_size=0.2, random_state=10)  # Split the dataset
     model = get_CNN_model()
     print("Shape of train_y:", train_y.shape)
     print("Shape of test_y:", test_y.shape)
